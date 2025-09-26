@@ -47,7 +47,8 @@ backend/
 └── project/
     ├── scripts/
     │   └── prisma/
-    │       └── schema.prisma
+    │   │   └── schema.prisma
+    │   │   └── .env (Variáveis de ambiente)
     ├── src/
     │   ├── app/
     │   │   ├── context/ (Modelos e Repositórios)
