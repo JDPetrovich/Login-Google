@@ -1,0 +1,206 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id_usuario       Int         @id @default(autoincrement())
+  nome             String
+  email            String
+  senha            String?
+  tipo             TipoUsuario @default(USUARIO)
+  cfp              String?
+  telefone         String?
+  endereco         Json?
+  conta_confirmada Boolean
+  data_cadastro    DateTime
+
+  AvaliacaoUsuario     AvaliacaoUsuario[]
+  Solicitacao          Solicitacao[]
+  TermoDisponibilidade TermoDisponibilidade[]
+  FormularioAdocao     FormularioAdocao[]
+}
+
+model Gato {
+  id_gato              Int                    @id @default(autoincrement())
+  nome                 String
+  idade                Int
+  sexo                 Sexo
+  cor                  String
+  raca                 String
+  descricao            String
+  fotos                Json
+  sociavel             Boolean
+  status               StatusGato             @default(INDISPONIVEL)
+  data_casdastro       DateTime
+
+  AplicacaoVacina      AplicacaoVacina[]
+  Castracao            Castracao[]
+  Solicitacao          Solicitacao[]
+  TermoDisponibilidade TermoDisponibilidade[]
+  FormularioAdocao     FormularioAdocao[]
+  RecebimentoGato      RecebimentoGato[]
+}
+
+model RecebimentoGato {
+  id_recebimento       Int      @id @default(autoincrement())
+  nome_responsavel     String
+  cpf_responsavel      String
+  contato_responsavel  String
+  origem               OrigemGato
+  data_recebimento     DateTime
+  observacoes          String?
+  fotos                Json?
+  status               StatusRecebimento @default(RECEBIDO)
+  id_gato              Int?
+
+  gato Gato? @relation(fields: [id_gato], references: [id_gato])
+}
+
+model Vacina {
+  id_vacina    Int      @id @default(autoincrement())
+  nome         String   @unique
+  descricao    String?
+  preco        Float?
+  aplicacoes   AplicacaoVacina[]
+}
+
+model AplicacaoVacina {
+  id_aplicacao     Int      @id @default(autoincrement())
+  id_gato          Int
+  id_vacina        Int
+  data_aplicacao   DateTime
+  validade         DateTime
+  proxima_dose     DateTime?
+  observacoes      String?
+
+  gato    Gato    @relation(fields: [id_gato], references: [id_gato])
+  vacina  Vacina  @relation(fields: [id_vacina], references: [id_vacina])
+}
+
+model Castracao {
+  id_castracao     Int      @id @default(autoincrement())
+  id_gato          Int
+  data_castracao   DateTime
+  local            String?
+  responsavel      String?
+  observacoes      String?
+
+  gato    Gato    @relation(fields: [id_gato], references: [id_gato])
+}
+
+model AvaliacaoUsuario {
+  id_avaliacao   Int      @id @default(autoincrement())
+  id_usuario     Int
+  nota           Int
+  comentario     String
+  data_avaliacao DateTime
+
+  usuario Usuario @relation(fields: [id_usuario], references: [id_usuario])
+}
+
+model Solicitacao {
+  id_solicitacao   Int               @id @default(autoincrement())
+  id_usuario       Int
+  id_gato          Int
+  tipo             TipoSolicitacao
+  status           StatusResposta    @default(PENDENTE)
+  data_solicitacao DateTime
+  data_resposta    DateTime
+
+  usuario  Usuario                @relation(fields: [id_usuario], references: [id_usuario])
+  gato     Gato                   @relation(fields: [id_gato], references: [id_gato])
+  feedback FeedbackLarTemporario?
+}
+
+model TermoDisponibilidade {
+  id_termo        Int             @id @default(autoincrement())
+  id_usuario      Int
+  id_gato         Int
+  tipo            TipoSolicitacao
+  data_assinatura DateTime
+
+  usuario Usuario @relation(fields: [id_usuario], references: [id_usuario])
+  gato    Gato    @relation(fields: [id_gato], references: [id_gato])
+}
+
+model FeedbackLarTemporario {
+  id_feedback    Int      @id @default(autoincrement())
+  id_solicitacao Int      @unique
+  descricao      String
+  fotos          Json
+  data_feedback  DateTime
+
+  solicitacao Solicitacao @relation(fields: [id_solicitacao], references: [id_solicitacao])
+}
+
+model FormularioAdocao {
+  id_formulario     Int              @id @default(autoincrement())
+  id_usuario        Int
+  id_gato           Int
+  respostas         Json
+  status            StatusResposta   @default(PENDENTE)
+  data_envio        DateTime
+  data_avaliacao    DateTime?
+  observacoes_admin String
+
+  usuario Usuario @relation(fields: [id_usuario], references: [id_usuario])
+  gato    Gato    @relation(fields: [id_gato], references: [id_gato])
+}
+
+model Recuperacaosenha {
+  id        Int      @id @default(autoincrement())
+  email     String
+  codigo    String
+  expira_em DateTime
+  usado     Boolean  @default(false)
+  criado_em DateTime @default(now())
+}
+
+// Enums
+
+enum Sexo {
+  MACHO
+  FEMEA
+}
+
+enum OrigemGato {
+  RUA
+  DOACAO
+  RESGATE
+  OUTROS
+}
+
+enum StatusRecebimento {
+  RECEBIDO
+  TRIAGEM
+  FINALIZADO
+  RECUSADO
+}
+
+enum StatusGato {
+  INDISPONIVEL
+  DISPONIVEL
+  EM_LAR_TEMPORARIO
+  ADOTADO
+}
+
+enum TipoSolicitacao {
+  LAR_TEMPORARIO
+  ADOCAO
+}
+
+enum StatusResposta {
+  PENDENTE
+  APROVADO
+  REJEITADO
+}
+
+enum TipoUsuario {
+  ADMIN
+  USUARIO
+}
