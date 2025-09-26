@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library";
 
-const CLIENT_ID = "630200957679-j9i5s0qt9npspkprujui2oo16akgtuop.apps.googleusercontent.com";
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 
 export default class UsuarioService {
     #representacao = { content: "" };
