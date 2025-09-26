@@ -1,0 +1,85 @@
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 72px;
+  padding: 0 24px;
+  background-color: #fff8f0;
+  box-shadow: 0 2px 4px #f7763a5d;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoIcon {
+  font-size: 28px;
+  color: #ff7434; 
+}
+
+.title {
+  margin: 10;
+  color: #ff7434 !important;
+  font-weight: 600;
+}
+
+.desktopMenu {
+  display: flex;
+  gap: 20px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 1px 2px; 
+  border-radius: 6px;
+}
+
+.menuItem:hover {
+  color: #ff7434;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.activeMenuItem {
+  color: #f9e0d9;
+  background-color: #ff854d;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.mobileMenu {
+  display: none;
+  font-size: 24px;
+  color: #333;
+}
+
+.drawerMenu .ant-drawer-header {
+  border-bottom: 1px solid #eee;
+}
+
+.drawerMenu .ant-drawer-body {
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .desktopMenu {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: block;
+    color: #ff7434 !important;
+  }
+}

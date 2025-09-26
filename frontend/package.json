@@ -1,0 +1,23 @@
+{
+  "name": "webapp-ong-nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
+    "antd": "^5.27.4",
+    "next": "15.5.2",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "eslint": "^9.35.0",
+    "eslint-config-next": "15.5.2"
+  }
+}

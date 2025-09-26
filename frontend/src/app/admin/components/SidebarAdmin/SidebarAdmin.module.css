@@ -1,0 +1,77 @@
+.sidebar {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    background-color: #fff8f0;
+    box-shadow: 2px 0 6px #f7763a5d;
+}
+
+.logoSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 64px;
+    padding: 0 16px;
+}
+
+.logoIcon {
+    font-size: 28px;
+    color: #ff7434;
+}
+
+.title {
+    font-weight: 600;
+    color: #ff7434;
+}
+
+.logoutContainer {
+    position: absolute;
+    bottom: 16px;
+    width: 90%;
+    left: 5%;
+}
+
+:global(.ant-menu) {
+    background-color: #fff8f0;
+    border-right: none;
+}
+
+:global(.ant-menu-item) {
+    color: #333 !important;
+    font-weight: 500;
+}
+
+:global(.ant-menu-item-selected) {
+    background-color: #ff854d !important;
+    color: #f9e0d9 !important;
+}
+
+:global(.ant-menu-item:hover) {
+    background-color: #f7763a !important;
+    color: #f9e0d9 !important;
+}
+
+:global(.ant-menu-item .anticon) {
+    color: #ff854d !important;
+}
+
+:global(.ant-menu-item-selected .anticon) {
+    color: #f9e0d9 !important;
+}
+
+:global(.ant-menu-item:hover .anticon) {
+    color: #f9e0d9 !important;
+}
+
+:global(.ant-layout-sider-trigger) {
+    background-color: #ff854d !important;
+    color: #fff;
+    border-top: 1px solid #ffd6d6;
+    border-left: none;
+}
+
+:global(.ant-layout-sider-trigger:hover) {
+    background-color: #f7763a !important;
+    color: #fff;
+}
