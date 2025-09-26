@@ -137,11 +137,6 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 3.  **Configure as variáveis de ambiente:**
     Crie um arquivo `.env` dentro de `project/src/configs/` com as seguintes variáveis (exemplo):
         ```
-    PORTA_SERVIDOR=3006
-    JWT_SECRET="seu_segredo_jwt_aqui"
-    EMAIL_USER="seu_email@example.com"
-    EMAIL_PASS="sua_senha_de_aplicativo_ou_token"
-    GOOGLE_CLIENT_ID="seu_client_id_google_aqui"
     ```
     
     **Exemplo de valores para desenvolvimento (substitua pelos seus):**
@@ -184,8 +179,6 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 3.  **Configure as variáveis de ambiente:**
     Crie um arquivo `.env.local` na raiz do diretório `frontend/` com as seguintes variáveis (exemplo):
         ```
-    NEXT_PUBLIC_API_URL="http://localhost:3006"
-    NEXT_PUBLIC_GOOGLE_CLIENT_ID="seu_client_id_google_aqui"
     ```
     
     **Exemplo de valores para desenvolvimento (substitua pelos seus):**
