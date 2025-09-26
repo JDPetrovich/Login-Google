@@ -142,8 +142,6 @@ Certifique-se de ter as seguintes ferramentas instaladas:
     EMAIL_USER="seu_email@example.com"
     EMAIL_PASS="sua_senha_de_aplicativo_ou_token"
     GOOGLE_CLIENT_ID="seu_client_id_google_aqui"
-    GOOGLE_CLIENT_SECRET="seu_client_secret_google_aqui"
-    REDIRECT_URI="http://localhost:3000/api/auth/google/callback"
     ```
     
     **Exemplo de valores para desenvolvimento (substitua pelos seus):**
